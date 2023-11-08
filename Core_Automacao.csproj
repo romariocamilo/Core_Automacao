@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
     <PackageId>Core_Automacao</PackageId>
-    <Version>1.0.136</Version>
+    <Version>1.0.142</Version>
 
     <Authors>Romario Camilo Correa de Souza</Authors>
     <Company>Itaú Unibanco</Company>

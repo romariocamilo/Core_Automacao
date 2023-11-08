@@ -54,13 +54,28 @@ namespace Core_Automacao.Plataformas.Mobile
             }
         }
 
-        public ElementoMobile BuscaElementoMobileDaListaPeloTextoDesejado(List<ElementoMobile> listaElementoMobile, string textoParaCliclar)
+        /// <summary>
+        /// Esse método monta uma lista de elementos mobile e percorre a mesma até encontar o elemento com texto desejado e preencher o elementoMobile de entrada com os dados encontrados do elementoMobile da lista.
+        /// </summary>
+        /// <param name="elementoMobile"></param>
+        /// <param name="textoParaCliclar"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public ElementoMobile BuscaElementoMobileDaListaPeloTextoDesejado(ElementoMobile elementoMobile, string textoParaCliclar)
         {
+            List<ElementoMobile> listaElementoMobile = BuscaVariosElementoMobile(elementoMobile);
+
             try
             {
                 if (listaElementoMobile.FirstOrDefault(el => el.TextoObtido.Contains(textoParaCliclar)) is not null)
                 {
-                    return listaElementoMobile.FirstOrDefault(el => el.TextoObtido.Contains(textoParaCliclar));
+                    var elementoEncontrado = listaElementoMobile.FirstOrDefault(el => el.TextoObtido.Contains(textoParaCliclar));
+
+                    elementoMobile.TextoObtido = elementoEncontrado.TextoObtido;
+                    elementoMobile.ElementoAndroid = elementoEncontrado.ElementoAndroid;
+                    elementoMobile.ElementoIOS = elementoEncontrado.ElementoIOS;
+                    elementoMobile.ElementoVisivelNaTela = elementoEncontrado.ElementoVisivelNaTela;
+                    return elementoMobile;
                 }
                 else
                 {
@@ -382,22 +397,31 @@ namespace Core_Automacao.Plataformas.Mobile
             }
         }
 
-        public void ClicaNoElementoMobileDaListaPeloTextoDesejado(List<ElementoMobile> listaElementoMobile, string textoParaCliclar)
+        /// <summary>
+        /// Esse método monta uma lista de elementos mobile e percorre a mesma até encontar o elemento com texto desejado e clica no mesmo.
+        /// </summary>
+        /// <param name="elementoMobile"></param>
+        /// <param name="textoParaCliclar"></param>
+        /// <exception cref="Exception"></exception>
+        public void ClicaNoElementoMobileDaListaPeloTextoDesejado(ElementoMobile elementoMobile, string textoParaCliclar)
         {
             try
             {
-                if (listaElementoMobile.FirstOrDefault(el => el.TextoObtido.Contains(textoParaCliclar)) is not null)
+                var elementoEncontrado = BuscaElementoMobileDaListaPeloTextoDesejado(elementoMobile, textoParaCliclar);
+
+                switch (_plataformaMobile)
                 {
-                    listaElementoMobile.FirstOrDefault(el => el.TextoObtido.Contains(textoParaCliclar)).ElementoAndroid.Click();
-                }
-                else
-                {
-                    throw new Exception();
+                    case PlataformaMobile.Android:
+                        elementoMobile.ElementoAndroid.Click();
+                        break;
+                    case PlataformaMobile.iOS:
+                        elementoMobile.ElementoIOS.Click();
+                        break;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"EXCEÇÃO CUSTOMIZADA: Não foi encontrado um elemento na lista que continha o texto {textoParaCliclar}");
+                throw new Exception($"EXCEÇÃO CUSTOMIZADA: Não foi encontrado um elemento na lista que continha o texto {textoParaCliclar}. \n{ex.Message}");
             }
         }
 
