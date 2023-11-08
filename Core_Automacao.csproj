@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <PackageId>Core_Automacao</PackageId>
+    <Version>1.0.136</Version>
+
+    <Authors>Romario Camilo Correa de Souza</Authors>
+    <Company>Itaú Unibanco</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Appium.WebDriver" Version="4.4.5" />
+  </ItemGroup>
+
+</Project>

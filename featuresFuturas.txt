@@ -1,0 +1,13 @@
+Implementar na classe ElementoMobile/ElemtentoWeb o tipo do identificado (id, idAcessibilidade, class, xpath);
+Implementar o método no service que identifica o identificador do elemento mobile/web e usa o método de busca do driver de acordo com identificador;
+Implementar somente um método de busca , escreve, clique, scroll. etc consumindo o método que identifica o elemento. Só teremos um clique, um escreve, etc;
+Implementar camada de service que executar os scripts https no portal de massa;
+Implementar a escrita de log na maquina local do projeto consumer;
+Implementar integração com report no portal;
+Implementar classe de exceção controladas para mensagens de erro;
+Implementar classe de constantes para certas strings do projeto;
+Implementar o service para o driverweb;
+Implementar o service para o driver api restsharp;
+Implementar classe que criar o servidor appium em tempo de execução utilizando o appium service;
+Construir o readme do projeto no Github;
+Implementar a equealização dos métodos desnecessários do service;
